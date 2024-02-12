@@ -7,10 +7,11 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 public class Quiz{
         static Scanner sc = new Scanner(System.in);
-        public static String user;
+
 
         public static void main(String[] args) throws Exception {
                 FileSave fs = new FileSave();
@@ -87,57 +88,55 @@ public class Quiz{
                 System.out.println("Would you like to save your score?");
                 sc.nextLine();
                 String SaveScore = sc.nextLine();
-                if(SaveScore == "yes" || SaveScore == "y"){
+                if(SaveScore.equals("yes") || SaveScore.equals("y")){
                         System.out.println("Please enter your username.");
                         String user = sc.nextLine();
                         fs.updateResult(user, cList[index].label);
                 } 
 
                 System.out.println("Would you like to try again?");
-                sc.nextLine();
                 SaveScore = sc.nextLine();
-                if(SaveScore == "yes" || SaveScore == "y"){
-                        fs.updateResult(user, cList[index].label);
+                if(SaveScore.equals("yes") || SaveScore.equals("y")){
+                        main(args);
                 } else {
-
+                        System.out.println("Thank you for playing! Returning to menu...");
+                        TimeUnit.SECONDS.sleep(1);
+                        gameIntro();
                 }
         }
 
 
-        public static void gameIntro() throws Exception {
+        public static int gameIntro() throws Exception {
                 FileSave load = new FileSave();
-                Admin a = new Admin();
-                // I got rid of the "press one to play"
+                Admin pwd = new Admin();
+                
                 System.out.println();
                 System.out.println("---------------------------------------------------------");
                 System.out.println("Which Fruit Are You?");
-                System.out.println("You get to choose numbers 1-4 for every question!");
+                System.out.println("You get to choose numbers 1-3 for every question!");
                 System.out.println("Press 1 to continue, or press 2 to check out the current scores.");
                 System.out.println("Press 3 for admin menu.");
                 System.out.println("---------------------------------------------------------");
                 System.out.println();
 
-                int option = sc.nextInt();
-                if(option == 1){
-                        
-                } if (option == 2){
-                        //load.results();
-                        System.out.println("Press 1 to return back to main menu.");
-                        option = sc.nextInt();
+                // allows user to reenter input if input is not valid
+                while(true){
+                        int option = sc.nextInt();
                         if(option == 1){
-                                gameIntro();
-                        } else {
-                                System.out.println("Unknown Input. Please try again");
+                                return 0;
+                        } if (option == 2){
+                                load.printResult();
+                                System.out.println("Press 1 to return back to main menu.");
+                                option = sc.nextInt();
+                                if(option == 1){
+                                        gameIntro();
+                                }
+                        } if(option == 3){
+                                pwd.askForPwd(1);
+                        } if(option > 3 || option < 1) {
+                                System.out.println("Unknown Input. Please try again.");
                         }
-                } if(option == 3){
-                        a.askForPwd(1);
-                } else {
-                        System.out.println("Unknown Input. Please try again.");
                 }
-        }
-
-        public static void input(){
-
         }
 
         // returns the index that is the max

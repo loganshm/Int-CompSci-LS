@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 public class FileSave {
     String filename = "Results.csv";
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     HashMap<String, String> results = new HashMap();
 
     // Constructor: loads results as a hash map from filename
@@ -20,7 +21,8 @@ public class FileSave {
         loadResults();
     }
 
-    public HashMap<String, String> getResults() {
+    public HashMap<String, String> getResults() throws IOException {
+        loadResults();
         return results;
     }
 
@@ -58,8 +60,10 @@ public class FileSave {
         writeResults();
     }
 
-    public void fileNameChange(String name){
-        
+
+    // uses lambda expression to print out all values of the hashmap
+    public void printResult() throws Exception{
+        results.forEach((k, v) -> System.out.println("Username: " + k + ", Score: " + v));
     }
 
     // write results the hashmap to filename
