@@ -8,29 +8,57 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Random;
+
+import SystemFiles.Game;
 
 
-class Wordle{
+class Wordle implements Game{
 
-    //public String csvRead(File csvFile){
-        ///ArrayList<String> word = new ArrayList.asList;
-        //try{
-            //Scanner reader = new Scanner(csvFile);
-            //while(reader.hasNextLine()){
-                //if(word.size() != 2 || !word)
-//            }
-//        } catch (FileNotFoundException e){
-            
-//        }
-//    }
+    String fileName = "wordle.csv";
+    Scanner inputStream;
+    File file = new File(fileName);
+    List<String> options;
+
+    public String csvRead(){
+        try{
+            inputStream = new Scanner(file);
+
+            while(inputStream.hasNext()){
+                String line = inputStream.next();
+                options.add(line);
+            }
+
+            inputStream.close();
+
+        } catch (FileNotFoundException e){
+            e.printStackTrace();
+        }
+            return null;
+    }
 
     public String getGameName(){
         return null;
     }
 
     public void play(){
+        csvRead();
+        int rnd = new Random().nextInt(options.size());
+        String answer = options.get(rnd);
+        Scanner sc = new Scanner(System.in);
+        List<String> guesses = new ArrayList<>();
+        String[] nums = {"One", "Two", "Three", "Four", "Five", "Six, final chance"};
 
-    } // must be able to play a game
+        while (sc.nextLine().length() == 5){
+            for (String n : nums) {
+                System.out.println("Enter Guess Number " + nums[n] + " :");
+            }
+
+
+        }
+        
+
+    } 
 
     public String getScore(){
         return null;

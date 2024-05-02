@@ -1,3 +1,4 @@
+package SystemFiles;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -8,7 +9,7 @@ public class Games {
     static Scanner sc = new Scanner(System.in);
     static ArrayList<Game> games = new ArrayList<Game>();
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         HashMap<String, Integer> gameCounts = new HashMap<String, Integer>();
         // writes highscores
         File f = new File("Highscore.csv");
