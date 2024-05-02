@@ -1,3 +1,4 @@
+package SystemFiles;
 
 
 import java.io.File;
@@ -40,10 +41,13 @@ public interface GameWriteable extends Game {
                 FileWriter myWriter = new FileWriter(f);
                 myWriter.write(newFile);
                 myWriter.close();
+                myReader.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
+
+        
     }
 
     // get the best score for a specific game, from a file

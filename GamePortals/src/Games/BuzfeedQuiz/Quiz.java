@@ -1,5 +1,6 @@
 package Games.BuzfeedQuiz;
 
+import java.io.File;
 /*
  * Irene Feng Nov 2022
  * This is the class where we create the Quiz and run it. It has the main method.  
@@ -10,11 +11,29 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
-public class Quiz{
+import SystemFiles.Game;
+
+class Quiz implements Game{
         static Scanner sc = new Scanner(System.in);
 
+        @Override
+        public String getGameName(){
+                System.out.println("Buzfeed Quiz");
+                return null;
+        }
 
-        public void main(){
+        public String getScore(){
+                return null;
+        } // get a score - if there is no "score" you can return return "N/A" or something.
+
+        public void writeHighScore(File f){
+
+        } // writes the high score of this game to a file.
+
+
+
+        @Override
+        public void play () throws Exception{
 
                 // Create Categories
                 Category coconut = new Category("Coconut",
@@ -85,7 +104,7 @@ public class Quiz{
                 System.out.println("If you were a fruit, you would be a(n) " + cList[index].label + ". ");
                 System.out.println(cList[index].description);
 
-                System.out.println("Would you like to save your score?");
+                /* System.out.println("Would you like to save your score?");
                 sc.nextLine();
                 String SaveScore = sc.nextLine();
                 if(SaveScore.equals("yes") || SaveScore.equals("y")){
@@ -102,7 +121,7 @@ public class Quiz{
                         System.out.println("Thank you for playing! Returning to menu...");
                         TimeUnit.SECONDS.sleep(1);
                         gameIntro();
-                }
+                } */
         }
 
 
