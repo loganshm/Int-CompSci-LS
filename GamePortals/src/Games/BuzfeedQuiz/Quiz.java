@@ -33,7 +33,7 @@ class Quiz implements Game{
 
 
         @Override
-        public void play () throws Exception{
+        public void play() throws Exception{
 
                 // Create Categories
                 Category coconut = new Category("Coconut",
